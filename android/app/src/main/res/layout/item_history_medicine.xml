@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardHistMed"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Name + status badge -->
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView android:id="@+id/txtHistMedName"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Metformin"
+                android:textSize="17sp" android:textStyle="bold" android:textColor="#212121"/>
+
+            <TextView android:id="@+id/txtHistStatus"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Refilled"
+                android:textSize="12sp" android:textColor="#43A047"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Dosage -->
+        <TextView android:id="@+id/txtHistDosage"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="500mg · Once daily"
+            android:textSize="13sp" android:textColor="#757575"
+            android:layout_marginTop="4dp"/>
+
+        <!-- Tablets remaining -->
+        <TextView android:id="@+id/txtHistTablets"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="45 tablets remaining"
+            android:textSize="14sp" android:textColor="#43A047"
+            android:textStyle="bold" android:layout_marginTop="8dp"/>
+
+        <!-- Refill prediction -->
+        <TextView android:id="@+id/txtHistRefill"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="✅ Refill in ~12 days"
+            android:textSize="13sp" android:textColor="#43A047"
+            android:layout_marginTop="6dp"/>
+
+        <!-- Adherence label + bar -->
+        <TextView android:id="@+id/txtHistAdherence"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Excellent (94%)"
+            android:textSize="12sp" android:textColor="#757575"
+            android:layout_marginTop="8dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressAdherence"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent" android:layout_height="6dp"
+            android:layout_marginTop="4dp"
+            android:progress="94"
+            android:progressTint="#43A047"
+            android:progressBackgroundTint="#E0E0E0"/>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

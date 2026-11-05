@@ -1,0 +1,22 @@
+[
+  {"medicine_id": "MED0001", "brand_name": "Paracetamol", "generic_name": "Acetaminophen", "manufacturer": "Generic Co."},
+  {"medicine_id": "MED0002", "brand_name": "Crocin", "generic_name": "Paracetamol", "manufacturer": "GSK"},
+  {"medicine_id": "MED0003", "brand_name": "Dolo 650", "generic_name": "Paracetamol", "manufacturer": "Micro Labs"},
+  {"medicine_id": "MED0004", "brand_name": "Calpol", "generic_name": "Paracetamol", "manufacturer": "GSK"},
+  {"medicine_id": "MED0005", "brand_name": "Metformin", "generic_name": "Metformin Hydrochloride", "manufacturer": "Sun Pharma"},
+  {"medicine_id": "MED0006", "brand_name": "Glycomet", "generic_name": "Metformin", "manufacturer": "USV"},
+  {"medicine_id": "MED0007", "brand_name": "Amlodipine", "generic_name": "Amlodipine Besylate", "manufacturer": "Cipla"},
+  {"medicine_id": "MED0008", "brand_name": "Amlong", "generic_name": "Amlodipine", "manufacturer": "Micro Labs"},
+  {"medicine_id": "MED0009", "brand_name": "Atorvastatin", "generic_name": "Atorvastatin Calcium", "manufacturer": "Dr. Reddy's"},
+  {"medicine_id": "MED0010", "brand_name": "Atorlip", "generic_name": "Atorvastatin", "manufacturer": "Cipla"},
+  {"medicine_id": "MED0011", "brand_name": "Aspirin", "generic_name": "Acetylsalicylic Acid", "manufacturer": "Bayer"},
+  {"medicine_id": "MED0012", "brand_name": "Ecosprin", "generic_name": "Aspirin", "manufacturer": "USV"},
+  {"medicine_id": "MED0013", "brand_name": "Omeprazole", "generic_name": "Omeprazole", "manufacturer": "Sun Pharma"},
+  {"medicine_id": "MED0014", "brand_name": "Omez", "generic_name": "Omeprazole", "manufacturer": "Dr. Reddy's"},
+  {"medicine_id": "MED0015", "brand_name": "Ciprofloxacin", "generic_name": "Ciprofloxacin HCl", "manufacturer": "Cipla"},
+  {"medicine_id": "MED0016", "brand_name": "Cifran", "generic_name": "Ciprofloxacin", "manufacturer": "Ranbaxy"},
+  {"medicine_id": "MED0017", "brand_name": "Azithromycin", "generic_name": "Azithromycin", "manufacturer": "Pfizer"},
+  {"medicine_id": "MED0018", "brand_name": "Azithral", "generic_name": "Azithromycin", "manufacturer": "Alembic"},
+  {"medicine_id": "MED0019", "brand_name": "Cetirizine", "generic_name": "Cetirizine HCl", "manufacturer": "Generic Co."},
+  {"medicine_id": "MED0020", "brand_name": "Zyrtec", "generic_name": "Cetirizine", "manufacturer": "UCB"}
+]

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="13dp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center_vertical">
+
+    <!-- Coloured icon background pill -->
+    <LinearLayout
+        android:id="@+id/layoutSuggestionIcon"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:gravity="center"
+        android:background="@drawable/circle_shape">
+
+        <ImageView
+            android:id="@+id/imgSuggestionIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@android:drawable/ic_menu_search"
+            android:tint="#FFFFFF"/>
+    </LinearLayout>
+
+    <!-- Text block -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginStart="14dp">
+
+        <!-- Medicine/pharmacy name with typed prefix bolded -->
+        <TextView
+            android:id="@+id/txtSuggestionMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paracetamol"
+            android:textSize="15sp"
+            android:textColor="#212121"/>
+
+        <!-- Strength · Form  OR  city · distance -->
+        <TextView
+            android:id="@+id/txtSuggestionSub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500mg · Tablet"
+            android:textSize="12sp"
+            android:textColor="#888888"
+            android:layout_marginTop="2dp"/>
+
+    </LinearLayout>
+
+    <!-- Up-left arrow (tap to fill search without submitting) -->
+    <ImageView
+        android:id="@+id/imgSuggestionFill"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@android:drawable/ic_menu_send"
+        android:tint="#BDBDBD"
+        android:padding="2dp"/>
+
+</LinearLayout>

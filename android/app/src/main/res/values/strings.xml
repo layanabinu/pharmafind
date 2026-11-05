@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PharmaFind</string>
+    <string name="title_activity_maps">Map</string>
+
+    <!-- Login Screen -->
+    <string name="welcome">Welcome to PharmaFind</string>
+    <string name="login_subtitle">Find medicines at nearby pharmacies</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+
+    <!-- Home Screen -->
+    <string name="search_hint">Search medicine or pharmacy</string>
+    <string name="my_medicines">My Medicines</string>
+    <string name="nearby_pharmacies">Nearby Pharmacies</string>
+    <string name="you_are_here">You are here</string>
+    <string name="my_location">My Location</string>
+    <string name="clear_route">Clear Route</string>
+
+    <!-- Menu -->
+    <string name="menu_profile">Profile</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_help">Help</string>
+    <string name="menu_logout">Logout</string>
+</resources>

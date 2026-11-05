@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="48dp"
+        android:paddingBottom="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:id="@+id/btnHistoryBack"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_back"
+                android:tint="@android:color/white"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Medication History"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+
+        <!-- Summary row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                <TextView android:id="@+id/txtSummaryMeds"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="0" android:textColor="@android:color/white"
+                    android:textSize="24sp" android:textStyle="bold"/>
+                <TextView android:text="Medicines"
+                    android:textColor="#CCFFFFFF" android:textSize="11sp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                <TextView android:id="@+id/txtSummaryRefills"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="0" android:textColor="@android:color/white"
+                    android:textSize="24sp" android:textStyle="bold"/>
+                <TextView android:text="Refills Due"
+                    android:textColor="#CCFFFFFF" android:textSize="11sp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical" android:gravity="center">
+                <TextView android:id="@+id/txtSummaryInteractions"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="0" android:textColor="@android:color/white"
+                    android:textSize="24sp" android:textStyle="bold"/>
+                <TextView android:text="Interactions"
+                    android:textColor="#CCFFFFFF" android:textSize="11sp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Tab buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/white"
+        android:elevation="2dp">
+        <Button
+            android:id="@+id/btnTabMedicines"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="My Medicines"
+            android:textSize="13sp"
+            android:backgroundTint="@android:color/white"
+            android:textColor="@color/primary"/>
+        <Button
+            android:id="@+id/btnTabTimeline"
+            android:layout_width="0dp" android:layout_height="44dp"
+            android:layout_weight="1"
+            android:text="Timeline"
+            android:textSize="13sp"
+            android:backgroundTint="@android:color/white"
+            android:textColor="#9E9E9E"
+            android:alpha="0.6"/>
+    </LinearLayout>
+
+    <!-- Interaction warnings card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardInteractions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:visibility="gone"
+        app:cardCornerRadius="12dp"
+        app:cardBackgroundColor="#FFEBEE"
+        app:cardElevation="3dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+            <TextView
+                android:text="⚠️ Drug Interaction Warnings"
+                android:textSize="14sp" android:textStyle="bold"
+                android:textColor="#B71C1C"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"/>
+            <LinearLayout
+                android:id="@+id/llInteractionsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progressHistory"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/txtHistoryEmpty"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="No history yet" android:textColor="#9E9E9E"
+        android:textSize="14sp" android:gravity="center"
+        android:padding="40dp" android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHistoryMedicines"
+        android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="12dp" android:paddingBottom="16dp"
+        android:clipToPadding="false"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHistoryTimeline"
+        android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingHorizontal="12dp" android:paddingBottom="16dp"
+        android:clipToPadding="false"
+        android:visibility="gone"/>
+
+</LinearLayout>

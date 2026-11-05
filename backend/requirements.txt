@@ -1,0 +1,31 @@
+# PharmaFind Backend Dependencies
+# Install all: pip install -r requirements.txt
+
+# ── Web Framework ─────────────────────────────
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+
+# ── Database ──────────────────────────────────
+sqlalchemy==2.0.30
+# SQLite — built into Python, no install needed
+
+# PostgreSQL driver (needed when DATABASE_URL is set)
+psycopg2-binary==2.9.9
+
+# ── Auth & Security ───────────────────────────
+passlib[bcrypt]==1.7.4
+python-jose[cryptography]==3.3.0
+
+# ── Fuzzy Search ──────────────────────────────
+fuzzywuzzy==0.18.0
+python-Levenshtein==0.25.1   # speeds up fuzzywuzzy ~10x
+
+# ── Google Places API ─────────────────────────
+requests==2.32.2
+
+# ── Environment Variables ─────────────────────
+python-dotenv==1.0.1
+
+# ── Data Validation ───────────────────────────
+pydantic==1.10.14
+email-validator==2.1.1

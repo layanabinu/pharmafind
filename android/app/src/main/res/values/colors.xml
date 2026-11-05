@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="primary_light">#BBDEFB</color>
+    <color name="accent">#FF5722</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_hint">#BDBDBD</color>
+
+    <!-- Background Colors -->
+    <color name="background">#FAFAFA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FF9800</color>
+    <color name="error">#F44336</color>
+    <color name="info">#2196F3</color>
+
+    <!-- Extra rank color -->
+    <color name="orange">#FF7043</color>
+
+    <!-- Map Marker Colors -->
+    <color name="marker_open">#4CAF50</color>
+    <color name="marker_closed">#9E9E9E</color>
+    <color name="marker_user">#2196F3</color>
+    <color name="route_line">#1E88E5</color>
+
+    <!-- Shadow -->
+    <color name="shadow">#40000000</color>
+
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+</resources>

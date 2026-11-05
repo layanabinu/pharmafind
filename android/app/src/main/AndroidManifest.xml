@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.PharmaFind"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <!-- Splash Screen (Launcher) -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.PharmaFind">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Login Activity -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Register Activity -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Home Activity -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- My Medicines Activity -->
+        <activity
+            android:name=".MyMedicinesActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Profile Activity -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Settings Activity -->
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Maps Activity -->
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Main Activity (Unused - kept for reference) -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+
+        <!-- Google Maps API Key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
+        <!-- Medication History Activity -->
+        <activity
+            android:name=".MedicationHistoryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Reservation / Booking Activity -->
+        <activity
+            android:name=".ReservationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Pharmacy Owner Dashboard -->
+        <activity
+            android:name=".OwnerHomeActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".OwnerReservationsActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".PharmacyOwnerDashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Recommendations / AI Suggestions -->
+        <activity
+            android:name=".RecommendationsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Reminder Settings -->
+        <activity
+            android:name=".ReminderSettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Medicine Reminder Alarm Receiver -->
+        <receiver
+            android:name=".MedicineReminderReceiver"
+            android:exported="false"/>
+
+        <receiver
+            android:name=".OwnerStockAlertReceiver"
+            android:exported="false"/>
+
+        <!-- Reservation History -->
+        <activity
+            android:name=".ReservationHistoryActivity"
+            android:exported="false"
+            android:theme="@style/Theme.PharmaFind" />
+
+        <!-- Geofence Broadcast Receiver -->
+        <receiver
+            android:name=".GeofenceBroadcastReceiver"
+            android:exported="false"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+        <activity android:name=".CartActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+        <activity android:name=".MedicineInfoActivity"
+            android:screenOrientation="portrait"
+            android:exported="false"/>
+    </application>
+
+</manifest>

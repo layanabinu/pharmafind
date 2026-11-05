@@ -1,0 +1,33 @@
+# Python / backend
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+*.db
+*.sqlite3
+*.log
+.vercel/
+
+# ML weights (too large for git)
+ml_models/
+*.npy
+*.pt
+*.pth
+*.pkl
+
+# Android
+local.properties
+*.jks
+*.keystore
+*.apk
+*.aab
+build/
+.gradle/
+.idea/
+*.iml
+.cxx/
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="#F5F5F5">
+    <!--  Header  -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@color/primary" android:orientation="vertical" android:paddingTop="44dp" android:paddingBottom="12dp" android:paddingHorizontal="16dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="14dp">
+            <ImageView android:id="@+id/btnBack" android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_back" android:tint="#FFFFFF" android:padding="4dp"/>
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:orientation="vertical">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="My Medicines" android:textSize="20sp" android:textStyle="bold" android:textColor="#FFFFFF"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Track, refill and manage your medications" android:textSize="12sp" android:textColor="#B3E5FC"/>
+            </LinearLayout>
+            <!--  Add medicine button  -->
+            <LinearLayout android:id="@+id/btnAddMedicine" android:layout_width="wrap_content" android:layout_height="36dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="@drawable/rounded_white_card" android:paddingHorizontal="14dp">
+                <ImageView android:layout_width="16dp" android:layout_height="16dp" android:src="@drawable/ic_add" app:tint="#1565C0"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="6dp" android:text="Add" android:textSize="13sp" android:textStyle="bold" android:textColor="#1565C0"/>
+            </LinearLayout>
+        </LinearLayout>
+        <!--  Navigation tabs row  -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <!--  Medicines (current — active tab)  -->
+            <LinearLayout android:id="@+id/tabMedicines" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="#1A000000" android:layout_marginEnd="4dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="💊 Medicines" android:textSize="12sp" android:textStyle="bold" android:textColor="#FFFFFF"/>
+            </LinearLayout>
+            <!--  History tab  -->
+            <LinearLayout android:id="@+id/tabHistory" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="#0AFFFFFF" android:layout_marginEnd="4dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="📋 History" android:textSize="12sp" android:textColor="#B3E5FC"/>
+            </LinearLayout>
+            <!--  Reservations tab  -->
+            <LinearLayout android:id="@+id/tabReservations" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="#0AFFFFFF" android:layout_marginEnd="4dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🎟 Bookings" android:textSize="12sp" android:textColor="#B3E5FC"/>
+            </LinearLayout>
+            <!--  Recommendations tab  -->
+            <LinearLayout android:id="@+id/tabRecommendations" android:layout_width="0dp" android:layout_height="36dp" android:layout_weight="1" android:orientation="vertical" android:gravity="center" android:background="#0AFFFFFF">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🤖 AI Tips" android:textSize="12sp" android:textColor="#B3E5FC"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <!--  Progress bar  -->
+    <ProgressBar android:id="@+id/progressBar" android:layout_width="match_parent" android:layout_height="3dp" style="@style/Widget.AppCompat.ProgressBar.Horizontal" android:indeterminate="true" android:visibility="gone"/>
+    <!--  Empty state  -->
+    <TextView android:id="@+id/txtEmptyState" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="No medicines added yet\nTap + Add to get started" android:textSize="15sp" android:textColor="#9E9E9E" android:gravity="center" android:padding="48dp" android:visibility="gone"/>
+    <!--  Medicine cards scroll  -->
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:padding="12dp" android:clipToPadding="false">
+        <LinearLayout android:id="@+id/medicinesContainer" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"/>
+    </ScrollView>
+</LinearLayout>

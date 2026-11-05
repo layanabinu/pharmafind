@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <!-- Drag handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="4dp"
+        android:background="#DDDDDD"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Pharmacy name -->
+            <TextView
+                android:id="@+id/bsPharmacyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pharmacy Name"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#212121"/>
+
+            <!-- Address -->
+            <TextView
+                android:id="@+id/bsPharmacyAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="123 Main Street"
+                android:textSize="14sp"
+                android:textColor="#757575"
+                android:layout_marginTop="4dp"/>
+
+            <!-- Distance + Rating + Status row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/bsPharmacyDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0.5 km"
+                    android:textSize="13sp"
+                    android:textColor="#1E88E5"
+                    android:textStyle="bold"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="14dp"
+                    android:background="#DDDDDD"
+                    android:layout_marginHorizontal="10dp"/>
+
+                <TextView
+                    android:text="★"
+                    android:textSize="13sp"
+                    android:textColor="#FFC107"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/bsPharmacyRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.5"
+                    android:textSize="13sp"
+                    android:textColor="#212121"
+                    android:layout_marginStart="2dp"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="14dp"
+                    android:background="#DDDDDD"
+                    android:layout_marginHorizontal="10dp"/>
+
+                <TextView
+                    android:id="@+id/bsPharmacyStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open Now"
+                    android:textSize="13sp"
+                    android:textColor="#43A047"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- Divider -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EEEEEE"
+                android:layout_marginVertical="16dp"/>
+
+            <!-- Medicine info card (shown only during medicine search) -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardMedicineInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"
+                app:cardCornerRadius="12dp"
+                app:cardBackgroundColor="#F3F8FF"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <!-- Medicine name + price row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/bsMedicineName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Paracetamol"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#212121"/>
+
+                        <TextView
+                            android:id="@+id/bsMedicinePrice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹6.50"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="#1E88E5"/>
+                    </LinearLayout>
+
+                    <!-- Stock -->
+                    <TextView
+                        android:id="@+id/bsMedicineStock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="In Stock (45)"
+                        android:textSize="13sp"
+                        android:textColor="#43A047"
+                        android:layout_marginTop="4dp"/>
+
+                    <!-- Prescription badge (hidden by default) -->
+                    <TextView
+                        android:id="@+id/bsPrescriptionBadge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="⚕️ Prescription Required — bring doctor's note"
+                        android:textSize="12sp"
+                        android:textColor="#E65100"
+                        android:background="#FFF8E1"
+                        android:padding="8dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"/>
+
+                    <!-- Uses / Indications -->
+                    <TextView
+                        android:id="@+id/bsMedicineUsesLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Uses"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="#1565C0"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/bsMedicineUses"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="12sp"
+                        android:textColor="#444444"
+                        android:layout_marginTop="2dp"
+                        android:visibility="gone"/>
+
+                    <!-- Side Effects -->
+                    <TextView
+                        android:id="@+id/bsSideEffectsLabel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Side Effects"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        android:textColor="#C62828"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"/>
+                    <TextView
+                        android:id="@+id/bsSideEffects"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="12sp"
+                        android:textColor="#555555"
+                        android:layout_marginTop="2dp"
+                        android:visibility="gone"/>
+
+                    <!-- Review Bar -->
+                    <LinearLayout
+                        android:id="@+id/layoutReviewBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Patient Reviews"
+                            android:textSize="11sp"
+                            android:textStyle="bold"
+                            android:textColor="#555555"
+                            android:layout_marginBottom="4dp"/>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="2dp">
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:text="😊 Good"
+                                android:textSize="11sp"
+                                android:textColor="#2E7D32"/>
+                            <ProgressBar
+                                android:id="@+id/pbExcellent"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="8dp"
+                                android:layout_weight="1"
+                                android:progressTint="#43A047"
+                                android:max="100"
+                                android:progress="0"/>
+                            <TextView
+                                android:id="@+id/txtExcellentPct"
+                                android:layout_width="36dp"
+                                android:layout_height="wrap_content"
+                                android:text="0%"
+                                android:textSize="11sp"
+                                android:gravity="end"
+                                android:textColor="#2E7D32"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:layout_marginBottom="2dp">
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:text="😐 Avg"
+                                android:textSize="11sp"
+                                android:textColor="#F57F17"/>
+                            <ProgressBar
+                                android:id="@+id/pbAverage"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="8dp"
+                                android:layout_weight="1"
+                                android:progressTint="#FDD835"
+                                android:max="100"
+                                android:progress="0"/>
+                            <TextView
+                                android:id="@+id/txtAveragePct"
+                                android:layout_width="36dp"
+                                android:layout_height="wrap_content"
+                                android:text="0%"
+                                android:textSize="11sp"
+                                android:gravity="end"
+                                android:textColor="#F57F17"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical">
+                            <TextView
+                                android:layout_width="60dp"
+                                android:layout_height="wrap_content"
+                                android:text="😞 Poor"
+                                android:textSize="11sp"
+                                android:textColor="#C62828"/>
+                            <ProgressBar
+                                android:id="@+id/pbPoor"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="0dp"
+                                android:layout_height="8dp"
+                                android:layout_weight="1"
+                                android:progressTint="#E53935"
+                                android:max="100"
+                                android:progress="0"/>
+                            <TextView
+                                android:id="@+id/txtPoorPct"
+                                android:layout_width="36dp"
+                                android:layout_height="wrap_content"
+                                android:text="0%"
+                                android:textSize="11sp"
+                                android:gravity="end"
+                                android:textColor="#C62828"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+
+                    <!-- Reserve button -->
+                    <Button
+                        android:id="@+id/btnReservePickup"
+                        android:layout_width="match_parent"
+                        android:layout_height="44dp"
+                        android:layout_marginTop="12dp"
+                        android:text="Reserve for Pickup"
+                        android:textSize="14sp"
+                        android:backgroundTint="@color/primary"
+                        android:textColor="@android:color/white"
+                        android:visibility="gone"/>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Action buttons row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <!-- Directions -->
+                <LinearLayout
+                    android:id="@+id/btnDirections"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless">
+                    <TextView
+                        android:text="🗺"
+                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Directions"
+                        android:textSize="11sp"
+                        android:textColor="#757575"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <!-- Call -->
+                <LinearLayout
+                    android:id="@+id/btnCall"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless">
+                    <TextView
+                        android:text="📞"
+                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Call"
+                        android:textSize="11sp"
+                        android:textColor="#757575"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <!-- Share -->
+                <LinearLayout
+                    android:id="@+id/btnShare"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless">
+                    <TextView
+                        android:text="↗️"
+                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Share"
+                        android:textSize="11sp"
+                        android:textColor="#757575"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <!-- Save -->
+                <LinearLayout
+                    android:id="@+id/btnSave"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless">
+                    <TextView
+                        android:text="🔖"
+                        android:textSize="22sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Save"
+                        android:textSize="11sp"
+                        android:textColor="#757575"
+                        android:layout_marginTop="4dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Bottom padding -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="24dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

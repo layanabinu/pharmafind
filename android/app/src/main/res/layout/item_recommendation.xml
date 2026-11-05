@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardRec"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Top row: name + source badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtRecMedicineName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Atorvastatin"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:textColor="#212121"/>
+
+                <TextView
+                    android:id="@+id/txtRecGenericName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lipitor 10mg"
+                    android:textSize="13sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="2dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtRecSource"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👥 Users like you"
+                android:textSize="11sp"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:textColor="#1565C0"
+                android:background="#E3F2FD"/>
+
+        </LinearLayout>
+
+        <!-- Reason text -->
+        <TextView
+            android:id="@+id/txtRecReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Users with similar medicines also take this"
+            android:textSize="13sp"
+            android:textColor="#546E7A"
+            android:layout_marginTop="10dp"/>
+
+        <!-- Prescription badge -->
+        <TextView
+            android:id="@+id/txtRecPrescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚕️ Prescription required"
+            android:textSize="12sp"
+            android:textColor="#E65100"
+            android:background="#FFF8E1"
+            android:padding="6dp"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"/>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Search button -->
+        <TextView
+            android:id="@+id/txtRecSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🔍  Find this medicine at nearby pharmacies →"
+            android:textSize="13sp"
+            android:textColor="@color/primary"
+            android:textStyle="bold"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

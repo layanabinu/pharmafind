@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    activity_home.xml
+    Root: CoordinatorLayout so BottomSheet behavior works.
+    Layer order (back to front):
+      1. SupportMapFragment  — full-screen map
+      2. Top bar             — logo + My Medicines pill + profile + search
+      3. In-app nav panel    — visible only when route is active
+      4. FABs                — MyLocation / ClearRoute / Recommendations
+      5. BottomSheet         — pharmacy cards
+-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorHome"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- 1. MAP -->
+    <fragment
+        android:id="@+id/home_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- 2. TOP BAR -->
+    <LinearLayout
+        android:id="@+id/topBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="44dp"
+        android:paddingHorizontal="14dp"
+        android:paddingBottom="6dp">
+
+        <!-- Logo row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp">
+
+            <!-- PharmaFind logo card -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="38dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_white_card"
+                android:paddingHorizontal="12dp"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:src="@mipmap/ic_launcher"
+                    android:scaleType="fitCenter"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="PharmaFind"
+                    android:textSize="17sp"
+                    android:textStyle="bold"
+                    android:textColor="#1565C0"/>
+            </LinearLayout>
+
+            <!-- My Medicines pill: icon + label on coloured background -->
+            <LinearLayout
+                android:id="@+id/btnMyMedicines"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/pill_primary"
+                android:paddingStart="12dp"
+                android:paddingEnd="14dp"
+                android:layout_marginStart="10dp"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
+                    android:src="@drawable/ic_medicines"
+                    app:tint="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="My Meds"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Profile avatar -->
+            <ImageView
+                android:id="@+id/imgProfileMenu"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/ic_person"
+                android:background="@drawable/circle_white"
+                android:padding="9dp"
+                android:elevation="4dp"
+                android:scaleType="centerInside"
+                app:tint="#1565C0"/>
+        </LinearLayout>
+
+        <!-- Search card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardSearch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="12dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_search"
+                    app:tint="#9E9E9E"/>
+
+                <EditText
+                    android:id="@+id/edtSearch"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:hint="Search medicine, symptom or pharmacy&#8230;"
+                    android:textSize="14sp"
+                    android:textColor="#212121"
+                    android:textColorHint="#BDBDBD"
+                    android:background="@null"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true"/>
+
+                <ImageView
+                    android:id="@+id/imgSearchClear"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_close"
+                    app:tint="#BDBDBD"
+                    android:visibility="gone"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!--
+            The suggestion dropdown LinearLayout is injected here
+            programmatically in HomeActivity.setupViews() — it
+            inserts itself right after cardSearch inside topBar.
+        -->
+    </LinearLayout>
+
+    <!-- 3. IN-APP NAVIGATION PANEL -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardNavigationPanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="434dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="16dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1565C0"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="14dp">
+
+            <!-- Destination + close button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="&#128205;"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/txtNavDestination"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:text="Destination"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:ellipsize="end"
+                    android:maxLines="1"/>
+
+                <ImageView
+                    android:id="@+id/btnNavClose"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_close"
+                    android:padding="6dp"
+                    app:tint="#FFFFFF"/>
+            </LinearLayout>
+
+            <!-- Distance + ETA + mode -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#22000000"
+                    android:paddingHorizontal="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="&#128205;"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:id="@+id/txtNavDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="&#8212;"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+                </LinearLayout>
+
+                <View android:layout_width="8dp" android:layout_height="1dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="#22000000"
+                    android:paddingHorizontal="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="&#9201;"
+                        android:textSize="13sp"/>
+
+                    <TextView
+                        android:id="@+id/txtNavDuration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="&#8212;"
+                        android:textSize="17sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"/>
+                </LinearLayout>
+
+                <View android:layout_width="8dp" android:layout_height="1dp"/>
+
+                <TextView
+                    android:id="@+id/txtNavMode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:text="&#128663;"
+                    android:textSize="20sp"
+                    android:background="#22000000"
+                    android:paddingHorizontal="10dp"/>
+            </LinearLayout>
+
+            <!-- Step instruction -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="#22FFFFFF"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="9dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/imgNavStepArrow"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:gravity="center"
+                    android:text="&#10145;"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical">
+
+                    <!-- Step counter e.g. "Step 2 of 7" -->
+                    <TextView
+                        android:id="@+id/txtNavStepCounter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Step 1"
+                        android:textSize="10sp"
+                        android:textColor="#B3E5FC"
+                        android:layout_marginBottom="2dp"/>
+
+                    <!-- Full turn instruction -->
+                    <TextView
+                        android:id="@+id/txtNavStep"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Follow the blue route"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF"
+                        android:maxLines="2"
+                        android:ellipsize="end"/>
+
+                    <!-- Distance to next turn -->
+                    <TextView
+                        android:id="@+id/txtNavStepDistance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="11sp"
+                        android:textColor="#B3E5FC"
+                        android:layout_marginTop="2dp"/>
+
+                    <!-- Progress bar across all steps -->
+                    <ProgressBar
+                        android:id="@+id/pbNavProgress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:progressTint="#FFFFFF"
+                        android:progressBackgroundTint="#4D1565C0"
+                        android:max="100"
+                        android:progress="0"
+                        android:layout_marginTop="6dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Prev / Next / Open in Maps -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/btnNavPrev"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Prev"
+                    android:textSize="11sp"
+                    android:textColor="#1565C0"
+                    android:backgroundTint="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:paddingHorizontal="10dp"
+                    android:layout_marginEnd="6dp"
+                    android:visibility="gone"/>
+
+                <Button
+                    android:id="@+id/btnNavNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Next"
+                    android:textSize="11sp"
+                    android:textColor="#1565C0"
+                    android:backgroundTint="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:paddingHorizontal="10dp"
+                    android:visibility="gone"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"/>
+
+                <Button
+                    android:id="@+id/btnNavOpenGMaps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="34dp"
+                    android:text="Open in Maps"
+                    android:textSize="11sp"
+                    android:textColor="#1565C0"
+                    android:backgroundTint="#FFFFFF"
+                    style="@style/Widget.MaterialComponents.Button"
+                    android:paddingHorizontal="10dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- 4a-cart. FAB — View Cart (hidden until items added) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="498dp"
+        android:src="@drawable/ic_bookings"
+        android:contentDescription="View Cart"
+        app:backgroundTint="#1565C0"
+        app:tint="#FFFFFF"
+        app:fabSize="normal"
+        app:elevation="8dp"
+        android:visibility="gone"/>
+
+    <!-- 4a. FAB — My Location -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="498dp"
+        android:src="@drawable/ic_my_location"
+        android:contentDescription="My Location"
+        app:backgroundTint="#FFFFFF"
+        app:tint="#1565C0"
+        app:fabSize="mini"
+        app:elevation="6dp"/>
+
+    <!-- 4b. FAB — Clear Route (hidden until route drawn) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabClearRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="554dp"
+        android:src="@drawable/ic_close"
+        android:contentDescription="Clear Route"
+        app:backgroundTint="#F44336"
+        app:tint="#FFFFFF"
+        app:fabSize="mini"
+        app:elevation="6dp"
+        android:visibility="gone"/>
+
+    <!-- 4c. FAB — AI Recommendations -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabRecommendations"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="498dp"
+        android:src="@drawable/ic_recommendations"
+        android:contentDescription="AI Recommendations"
+        app:backgroundTint="#1565C0"
+        app:tint="#FFFFFF"
+        app:fabSize="mini"
+        app:elevation="6dp"/>
+
+    <!-- 5. BOTTOM SHEET -->
+    <LinearLayout
+        android:id="@+id/bottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="620dp"
+        android:orientation="vertical"
+        android:background="@drawable/bottom_sheet_background"
+        android:layout_gravity="bottom"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_hideable="false"
+        app:behavior_peekHeight="420dp">
+
+        <!-- Drag handle -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:background="#CCCCCC"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="6dp"/>
+
+        <!-- Header row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="18dp"
+            android:paddingBottom="6dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtBottomSheetTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nearby Pharmacies"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#212121"/>
+
+                <TextView
+                    android:id="@+id/txtPharmacyCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12sp"
+                    android:textColor="#757575"
+                    android:layout_marginTop="2dp"
+                    android:visibility="gone"/>
+            </LinearLayout>
+
+            <!-- Bookings shortcut -->
+            <LinearLayout
+                android:id="@+id/btnReservationsShortcut"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/rounded_outline_blue"
+                android:paddingHorizontal="10dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_bookings"
+                    app:tint="#1565C0"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Bookings"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#1565C0"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F0F0F0"/>
+
+        <!-- Filter chips -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingHorizontal="14dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:requiresFadingEdge="horizontal"
+            android:fadingEdgeLength="20dp">
+
+            <LinearLayout
+                android:id="@+id/chipContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All"
+                    android:checked="true"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_marginEnd="6dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipOpen"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open Now"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_marginEnd="6dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNearest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nearest"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_marginEnd="6dp"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBestRated"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Best Rated"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <!-- Pharmacy list -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvPharmacies"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"/>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
