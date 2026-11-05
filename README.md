@@ -1,10 +1,12 @@
-# 💊 PharmaFind
+#  PharmaFind
 
 **AI-powered medicine availability and pharmacy finder for Kerala, India.**
 
 Patients search for a medicine by brand name, generic name, symptom, or even a misspelling, see which nearby pharmacies stock it, and reserve it for pickup. Pharmacy owners manage inventory and get stock forecasts and low-stock alerts.
 
 `Kotlin (Android)` · `FastAPI (Python)` · `PostgreSQL / SQLite` · `PyTorch` · `sentence-transformers`
+
+> 🚧 **Status: partially working prototype.** Runs locally against a local backend; not deployed. Some features are still being finished and tested.
 
 ---
 
@@ -146,9 +148,7 @@ uvicorn main:app --reload
    MAPS_API_KEY=YOUR_GOOGLE_MAPS_KEY
    ```
    This file is gitignored and the key is injected into the manifest at build time.
-3. Choose the backend in `ApiClient.kt`:
-   - **Local:** `IS_PRODUCTION = false`, then set `DEV_IP` to your PC's IPv4 address (`ipconfig`). The phone and PC must be on the same Wi-Fi.
-   - **Deployed:** `IS_PRODUCTION = true` and set `PRODUCTION_URL` to your Railway URL.
+3. In `ApiClient.kt`, set `IS_PRODUCTION = false` and set `DEV_IP` to your PC's IPv4 address (run `ipconfig`). The phone and PC must be on the same Wi-Fi, and the backend must be running on port 8000.
 4. Sync Gradle, then Run.
 
 ---
@@ -157,22 +157,18 @@ uvicorn main:app --reload
 
 | Where | Variable | Purpose |
 |---|---|---|
-| `backend/.env` / Railway | `DATABASE_URL` | PostgreSQL connection string (defaults to SQLite) |
-| `backend/.env` / Railway | `JWT_SECRET` | Signs login tokens |
-| `backend/.env` / Railway | `GOOGLE_PLACES_KEY` | Optional live pharmacy search |
+| `backend/.env` | `DATABASE_URL` | Optional PostgreSQL URL (defaults to local SQLite) |
+| `backend/.env` | `JWT_SECRET` | Signs login tokens |
+| `backend/.env` | `GOOGLE_PLACES_KEY` | Optional live pharmacy search |
 | `android/local.properties` | `MAPS_API_KEY` | Google Maps SDK key |
 
 Secrets are never committed. `.env`, `local.properties`, databases, keystores, and ML weights are all in `.gitignore`.
 
 ---
 
-## ☁️ Deployment (Railway)
+## ☁️ Deployment
 
-1. Create a Railway project → **Deploy from GitHub repo** → select this repo.
-2. Set **Root Directory** to `/backend`.
-3. Add a PostgreSQL plugin and set the variables above.
-4. Deploy, then check `https://<your-app>.up.railway.app/docs`.
-5. Upload `ml_models/` to a persistent volume, or retrain on the server, to enable semantic search.
+Not deployed yet. A hosted setup (for example Railway with `/backend` as the root directory and a PostgreSQL database) is planned once the prototype is stable.
 
 ---
 
@@ -208,7 +204,6 @@ Seeded for local testing only. Change or remove them before any real deployment.
 | Backend | FastAPI, Uvicorn, SQLAlchemy 2.0, Pydantic, python-jose, passlib/bcrypt |
 | Database | SQLite (development), PostgreSQL (production) |
 | ML | PyTorch, sentence-transformers, FuzzyWuzzy, NumPy |
-| Hosting | Railway |
 
 ---
 
@@ -223,6 +218,7 @@ Seeded for local testing only. Change or remove them before any real deployment.
 
 ## 🗺️ Roadmap
 
+- Deploy the backend and ship a release build
 - Payment gateway integration
 - Home delivery
 - Multi-branch pharmacy owner accounts
